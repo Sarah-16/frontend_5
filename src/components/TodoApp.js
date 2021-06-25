@@ -1,3 +1,5 @@
+// import ReactDOMServer from "react-dom/server";
+
 import React, { useState } from "react";
 import "./todoapp.css";
 
@@ -33,7 +35,7 @@ function TodoApp() {
       setTaskList([...tasklist, taskDetails]);
     }
   };
-
+  //deletetask method
   const deletetask = (e, id) => {
     e.preventDefault();
     setTaskList(tasklist.filter((t) => t.id !== id));
@@ -63,7 +65,7 @@ function TodoApp() {
         name="text"
         id="text"
         onChange={(e) => handleChange(e)}
-        placeholder="Add task here..."
+        placeholder="Enter task..."
       />
       {/* Now call the handleChange in the input field on onChange event*/}
       {/* Pass e as the event so that we can get an input value from e.target.value*/}
@@ -77,9 +79,15 @@ function TodoApp() {
       list else nothing */}
       {tasklist !== [] ? (
         <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>ReactJS</li>
+
           {/* map each task value from task list, for task t show its value in the li element */}
           {tasklist.map((t) => (
             // for task t show its value in the li element, t.value
+            //   Class name is listitem
             <li className={t.isCompleted ? "crossText" : "listitem"}>
               {t.value}
               <button
@@ -88,13 +96,11 @@ function TodoApp() {
               >
                 Completed
               </button>
-
               <button className="delete" onClick={(e) => deletetask(e, t.id)}>
                 Delete
               </button>
             </li>
           ))}
-          <li>JavaScript</li>
         </ul>
       ) : null}
     </div>
@@ -102,3 +108,4 @@ function TodoApp() {
 }
 
 export default TodoApp;
+// ReactDOMServer.renderToString(<TodoApp />);
